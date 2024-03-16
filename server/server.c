@@ -3,16 +3,18 @@
 #include <stdlib.h>
 #include "parser.h"
 
-int main(int argc, char** argv) {
-	(void)argc;
+#define MAX_LENGTH 320
 
-	size_t input_length = strlen(argv[1]) + 2; // add one for null terminator.
+int main(void) {
+	char input[MAX_LENGTH];
+	fgets(input, MAX_LENGTH, stdin);
+
+	size_t input_length = strlen(input) + 1; // add one for null terminator.
 	char* user_input = (char*)malloc(input_length);
+	strcpy(user_input, input);
+	int result = mail_from_cmd(user_input);
+	free(user_input);
 
-	strcpy(user_input, argv[1]);
-	user_input[input_length - 2] = '\n';
-	user_input[input_length - 1] = '\0';
-
-	return mail_from_cmd(user_input);
+	return result;
 }
 

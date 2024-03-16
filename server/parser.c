@@ -120,7 +120,7 @@ int mail_from_cmd(char* input)
 {
 	while (*input != '\0') 
 	{
-		printf("char: %c\n", *input);
+		printf("char: %x\n", *input);
 		input++;
 	}
 	return 0;
