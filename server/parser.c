@@ -8,6 +8,7 @@
  * Date created: 3/15/2024
 */
 
+#include <stdio.h>
 #include "parser.h"
 
 int whitespace(char* input) 
@@ -117,7 +118,12 @@ int data_non_terminal(char* input)
 
 int mail_from_cmd(char* input)
 {
-	return TRUE;
+	while (*input != '\0') 
+	{
+		printf("char: %c\n", *input);
+		input++;
+	}
+	return 0;
 }
 
 int rcpt_to_cmd(char* input)

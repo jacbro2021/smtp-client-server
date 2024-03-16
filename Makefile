@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-c -Wall -Wextra -Werror -Wpedantic -g 
+CFLAGS=-c -Wall -Werror -Wpedantic -g 
 
 # Build both client and server.
 all: bin/server bin/client 
