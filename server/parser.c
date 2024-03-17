@@ -101,8 +101,55 @@ int special(char* input)
 	return TRUE;
 }
 
-int mail_from_non_terminal(char* input)
+/*
+ * Recursively parses the 'MAIL FROM:' command.
+ *
+ * Args:
+ * 	input: char* to the character to parse.
+ * 	expected: char that is expected to be parsed.
+ * 	second_m: 0 or 1 int used to indicate when the second M is being parsed.
+ *
+ * Returns:
+ * 	int: 0 if correct, non-zero error code otherwise.
+ */
+int mail_from_non_terminal(char* input, char expected, int second_m)
 {
+	if (*input++ == expected) 
+	{
+		switch (expected) 
+		{
+			case 'M':
+				if (!second_m)
+				{
+					return mail_from_non_terminal(input, 'A', FALSE);	
+				} else 
+				{
+					return mail_from_non_terminal(input, ':', FALSE);
+				}
+
+			case 'A':
+				return mail_from_non_terminal(input, 'I', FALSE);
+			case 'I':
+				return mail_from_non_terminal(input, 'L', FALSE);
+			case 'L':
+				return mail_from_non_terminal(input, ' ', FALSE);
+			case ' ':
+				return mail_from_non_terminal(input, 'F', FALSE);
+			case 'F':
+				return mail_from_non_terminal(input, 'R', FALSE);
+			case 'R':
+				return mail_from_non_terminal(input, 'O', FALSE);
+			case 'O':
+				return mail_from_non_terminal(input, 'M', TRUE);
+			case ':':
+				return VALID;
+		}
+	} else 
+	{
+		return MAIL_FROM_CMD_ERR;
+	}
+
+
 	return TRUE;
 }
 
@@ -118,12 +165,8 @@ int data_non_terminal(char* input)
 
 int mail_from_cmd(char* input)
 {
-	while (*input != '\0') 
-	{
-		printf("char: %x\n", *input);
-		input++;
-	}
-	return 0;
+	printf("%d\n", mail_from_non_terminal(input, 'M', FALSE));
+	return VALID;
 }
 
 int rcpt_to_cmd(char* input)

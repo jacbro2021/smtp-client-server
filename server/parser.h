@@ -13,8 +13,9 @@
  * messages as follows. These constants are defined here for clarity 
  * throughout the parser.
 */
-#define TRUE 0
-#define FALSE 1
+#define VALID 0
+#define FALSE 0
+#define TRUE 1
 #define WHITESPACE_ERR 2
 #define PATH_ERR 3
 #define MAILBOX_ERR 4
