@@ -13,8 +13,9 @@ int main(void) {
 	char* user_input = (char*)malloc(input_length);
 	strcpy(user_input, input);
 	int result = mail_from_cmd(user_input);
+	printf("%d\n", result);
 	free(user_input);
 
-	return result;
+	return EXIT_SUCCESS;
 }
 

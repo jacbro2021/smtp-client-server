@@ -11,14 +11,41 @@
 #include <stdio.h>
 #include "parser.h"
 
+int space(char* input);
+
+/*
+ * Evaluates a char to check if it matches the whitespace non-terminal.
+ * if whitespace is found, the pointer is moved past any continuous
+ * whitespace.
+ *
+ * Returns:
+ * 	int: 0 or 1 indicating false or true that the input char was
+ * 	     whitespace.
+*/
 int whitespace(char* input) 
 {
-	return TRUE;
+	if (space(input))
+	{
+		while (space(input)) input++;
+		return TRUE;
+	}
+	return FALSE;
 }
 
+/*
+ * Evaluates a char to check if it matches the space terminal. if the
+ * char passed as input is a space, true is returned and false
+ * otherwise.
+ *
+ * This function does not advance the pointer passed as an arg.
+*/
 int space(char* input)
 {
-	return TRUE;
+	if (*input == ' ' || *input == '\t')
+	{
+		return TRUE;
+	}
+	return FALSE;
 }
 
 int nullspace(char* input)
@@ -165,8 +192,7 @@ int data_non_terminal(char* input)
 
 int mail_from_cmd(char* input)
 {
-	printf("%d\n", mail_from_non_terminal(input, 'M', FALSE));
-	return VALID;
+	return whitespace(input);
 }
 
 int rcpt_to_cmd(char* input)
