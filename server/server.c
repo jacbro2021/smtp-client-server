@@ -1,3 +1,13 @@
+/*
+ * This program implements the function signatures defined in parser.h
+ * as well as any helper functions necessary. The intention for this
+ * program is to parse the context free grammar as defined in RFC 822
+ *
+ * Author(s): Jacob Brown
+ *
+ * Date created: 3/15/2024
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -15,7 +25,7 @@ int main(void) {
 	int result = mail_from_cmd(user_input);
 	printf("%d\n", result);
 	free(user_input);
-
+	fflush(stdout);
 	return EXIT_SUCCESS;
 }
 

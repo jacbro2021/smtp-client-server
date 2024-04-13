@@ -13,7 +13,6 @@
  * messages as follows. These constants are defined here for clarity 
  * throughout the parser.
 */
-#define VALID 0
 #define FALSE 0
 #define TRUE 1
 #define WHITESPACE_ERR 2
