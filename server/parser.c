@@ -106,7 +106,8 @@ int path(char **input)
 	{
 		return PATH_ERR;
 	}
-
+	(*input)++;
+	
 	return TRUE;
 }
 
@@ -281,6 +282,7 @@ int newline(char **input)
 {
 	if (**input == '\n')
 		return TRUE;
+	fprintf(stderr, "%s\n", *input);
 	return NEWLINE_ERR;
 }
 
@@ -377,13 +379,13 @@ int mail_from_cmd(char *input)
 	int reverse = reverse_path(&input);
 	if (reverse != TRUE)
 		return reverse;
-	/*
-		nullspace(input);
+	
+		nullspace(&input);
 
-		int end_line = newline(input);
+		int end_line = newline(&input);
 		if (end_line != TRUE)
 			return end_line;
-	*/
+	
 	return TRUE;
 }
 
